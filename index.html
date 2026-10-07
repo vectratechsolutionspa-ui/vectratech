@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VectraTech Solutions SpA | Soluciones digitales</title>
+  <meta name="description" content="VectraTech Solutions SpA: desarrollo de software a medida, plataformas web, aplicaciones móviles, automatización de procesos y consultoría TI para empresas e instituciones públicas.">
+  <meta name="theme-color" content="#0A2A66">
+  <meta property="og:title" content="VectraTech Solutions SpA">
+  <meta property="og:description" content="Soluciones digitales para empresas e instituciones públicas.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A2A66'/%3E%3Cpath d='M16 18h9l7 20 7-20h9L37 48h-10z' fill='%23fff'/%3E%3Crect x='16' y='50' width='32' height='4' rx='2' fill='%23D62839'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #0A2A66;
+      --blue-2: #1447B8;
+      --blue-soft: #EEF3FC;
+      --red: #D62839;
+      --red-soft: #FDEEF0;
+      --ink: #0E1630;
+      --muted: #5A6480;
+      --line: #E3E8F2;
+      --white: #FFFFFF;
+      --radius: 14px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* Barra tricolor superior */
+    .stripe { height: 5px; background: linear-gradient(90deg, var(--blue) 0 60%, var(--white) 60% 70%, var(--red) 70% 100%); }
+
+    /* Navegación */
+    header.nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: saturate(160%) blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -.02em; font-size: 1.1rem; color: var(--blue); }
+    .brand svg { width: 34px; height: 34px; flex: none; }
+    .brand span b { color: var(--red); font-weight: 800; }
+    .nav ul { display: flex; gap: 28px; list-style: none; font-size: .93rem; font-weight: 500; color: var(--muted); }
+    .nav ul a:hover { color: var(--blue); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px; border-radius: 999px;
+      font-weight: 600; font-size: .95rem;
+      transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-red { background: var(--red); color: var(--white); box-shadow: 0 6px 18px rgba(214,40,57,.25); }
+    .btn-red:hover { background: #BC1F2F; }
+    .btn-ghost { border: 1.5px solid var(--blue); color: var(--blue); }
+    .btn-ghost:hover { background: var(--blue-soft); }
+    .btn-white { background: var(--white); color: var(--blue); }
+    .nav .btn { padding: 9px 18px; font-size: .88rem; }
+
+    /* Hero */
+    .hero { position: relative; overflow: hidden; padding: 110px 0 100px; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 70% 70% at 70% 30%, #000 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 70% at 70% 30%, #000 30%, transparent 75%);
+    }
+    .hero::after {
+      content: ""; position: absolute; right: -120px; top: -120px; z-index: -1;
+      width: 460px; height: 460px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(20,71,184,.14), transparent 65%);
+    }
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--blue-2); background: var(--blue-soft);
+      padding: 6px 14px; border-radius: 999px;
+    }
+    .tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+    .hero h1 {
+      margin: 22px 0 20px; max-width: 820px;
+      font-size: clamp(2.3rem, 5.6vw, 4rem); line-height: 1.07; letter-spacing: -.035em; font-weight: 800;
+      color: var(--blue);
+    }
+    .hero h1 em { font-style: normal; color: var(--red); }
+    .hero p.lead { max-width: 620px; font-size: 1.15rem; color: var(--muted); }
+    .hero .cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+    .hero .facts { display: flex; flex-wrap: wrap; gap: 36px; margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--line); }
+    .fact b { display: block; font-size: 1rem; color: var(--blue); }
+    .fact span { font-size: .88rem; color: var(--muted); }
+
+    /* Secciones */
+    section { padding: 96px 0; }
+    .head { max-width: 640px; margin-bottom: 52px; }
+    .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--red); }
+    .head h2 { margin-top: 10px; font-size: clamp(1.8rem, 3.4vw, 2.5rem); line-height: 1.15; letter-spacing: -.03em; color: var(--blue); }
+    .head p { margin-top: 14px; color: var(--muted); font-size: 1.05rem; }
+
+    /* Servicios */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card {
+      position: relative; padding: 30px 28px; border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--white); transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .card:hover { border-color: #C9D5EE; box-shadow: 0 14px 34px rgba(10,42,102,.08); transform: translateY(-3px); }
+    .card::after {
+      content: ""; position: absolute; left: 28px; top: 0; width: 34px; height: 3px;
+      background: var(--red); border-radius: 0 0 3px 3px; opacity: 0; transition: opacity .2s;
+    }
+    .card:hover::after { opacity: 1; }
+    .icon {
+      width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+      background: var(--blue-soft); color: var(--blue-2); margin-bottom: 20px;
+    }
+    .icon svg { width: 24px; height: 24px; }
+    .card h3 { font-size: 1.1rem; color: var(--blue); letter-spacing: -.01em; margin-bottom: 8px; }
+    .card p { font-size: .95rem; color: var(--muted); }
+
+    /* Sector público */
+    .public { background: var(--blue); color: var(--white); position: relative; overflow: hidden; }
+    .public::before {
+      content: ""; position: absolute; right: -80px; bottom: -160px; width: 420px; height: 420px; border-radius: 50%;
+      border: 60px solid rgba(214,40,57,.18);
+    }
+    .public .head h2 { color: var(--white); }
+    .public .head p { color: #C3D0EE; }
+    .public .eyebrow { color: #FF8A96; }
+    .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; position: relative; }
+    .checks { list-style: none; display: grid; gap: 16px; }
+    .checks li { display: flex; gap: 14px; align-items: flex-start; font-size: 1rem; color: #E4EAF8; }
+    .checks li::before {
+      content: ""; flex: none; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%;
+      background: var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/13px no-repeat;
+    }
+    .panel { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius); padding: 30px; }
+    .panel h3 { font-size: 1.05rem; margin-bottom: 18px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { font-size: .86rem; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.1); color: var(--white); }
+    .panel .note { margin-top: 22px; font-size: .88rem; color: #AFC0E6; }
+
+    /* Proceso */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: s; }
+    .step { padding-top: 22px; border-top: 2px solid var(--line); position: relative; }
+    .step::before {
+      counter-increment: s; content: "0" counter(s);
+      display: block; font-weight: 800; font-size: .9rem; color: var(--red); margin-bottom: 10px;
+    }
+    .step::after { content: ""; position: absolute; top: -2px; left: 0; width: 40px; height: 2px; background: var(--blue); }
+    .step h3 { font-size: 1.05rem; color: var(--blue); margin-bottom: 6px; }
+    .step p { font-size: .94rem; color: var(--muted); }
+
+    /* Empresa */
+    .company { background: var(--blue-soft); }
+    .data { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; background: var(--white); border-radius: var(--radius); border: 1px solid var(--line); overflow: hidden; }
+    .data div { padding: 22px 26px; border-bottom: 1px solid var(--line); }
+    .data div:nth-child(odd) { border-right: 1px solid var(--line); }
+    .data div:nth-last-child(-n+2) { border-bottom: 0; }
+    .data dt { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .data dd { margin-top: 4px; font-weight: 600; color: var(--blue); }
+
+    /* Contacto */
+    .contact { text-align: center; }
+    .contact-box {
+      border-radius: 22px; padding: 64px 32px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-2) 100%);
+      color: var(--white); position: relative; overflow: hidden;
+    }
+    .contact-box::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 6px; background: var(--red); }
+    .contact-box h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); letter-spacing: -.03em; line-height: 1.15; }
+    .contact-box p { margin: 14px auto 30px; max-width: 520px; color: #D3DDF5; }
+    .contact-box .mail { display: block; margin-top: 18px; font-size: .95rem; color: #D3DDF5; }
+    .contact-box .mail:hover { color: var(--white); text-decoration: underline; }
+
+    footer { padding: 34px 0; border-top: 1px solid var(--line); font-size: .88rem; color: var(--muted); }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
+
+    /* Animación de entrada */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+      .split { grid-template-columns: 1fr; gap: 36px; }
+    }
+    @media (max-width: 720px) {
+      .wrap { padding: 0 16px; }
+      .nav ul { display: none; }
+      .hero { padding: 72px 0 64px; }
+      section { padding: 68px 0; }
+      .grid, .steps { grid-template-columns: 1fr; }
+      .data { grid-template-columns: 1fr; }
+      .data div:nth-child(odd) { border-right: 0; }
+      .data div:nth-last-child(2) { border-bottom: 1px solid var(--line); }
+      .hero .facts { gap: 22px; }
+      .contact-box { padding: 48px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stripe" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#inicio" aria-label="VectraTech Solutions, inicio">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0A2A66"/><path d="M16 18h9l7 20 7-20h9L37 48h-10z" fill="#fff"/><rect x="16" y="50" width="32" height="4" rx="2" fill="#D62839"/></svg>
+        <span>Vectra<b>Tech</b></span>
+      </a>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#sector-publico">Sector público</a></li>
+          <li><a href="#proceso">Cómo trabajamos</a></li>
+          <li><a href="#empresa">Empresa</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-red" href="#contacto">Contacto</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <span class="tag">Soluciones digitales · Chile</span>
+        <h1>Tecnología que hace <em>funcionar</em> a las organizaciones.</h1>
+        <p class="lead">Desarrollamos software a medida, plataformas web y aplicaciones móviles para empresas e instituciones públicas. Automatizamos procesos y convertimos datos en decisiones.</p>
+        <div class="cta">
+          <a class="btn btn-red" href="#contacto">Solicitar cotización</a>
+          <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+        </div>
+        <div class="facts">
+          <div class="fact"><b>Software a medida</b><span>Diseñado según su proceso</span></div>
+          <div class="fact"><b>Sector público y privado</b><span>Preparados para licitar</span></div>
+          <div class="fact"><b>Región del Biobío</b><span>Atención en todo Chile</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+      <div class="wrap">
+        <div class="head reveal">
+          <span class="eyebrow">Servicios</span>
+          <h2>Todo lo que su proyecto digital necesita, en un solo proveedor.</h2>
+          <p>Desde el levantamiento de requerimientos hasta la puesta en marcha y el soporte continuo.</p>
+        </div>
+        <div class="grid">
+          <article class="card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 5l-3 14"/></svg></div>
+            <h3>Software a medida</h3>
+            <p>Sistemas de gestión diseñados para su operación: control, registro, reportes y flujos de trabajo.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></div>
+            <h3>Plataformas web</h3>
+            <p>Portales, intranets y aplicaciones web seguras, rápidas y accesibles desde cualquier dispositivo.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+            <h3>Aplicaciones móviles</h3>
+            <p>Apps para terreno y operación, con funcionamiento sin conexión, GPS y sincronización de datos.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5l2.6-1.5M17.2 9l2.6-1.5"/><circle cx="12" cy="12" r="4"/></svg></div>
+            <h3>Automatización de procesos</h3>
+            <p>Eliminamos planillas y tareas manuales repetitivas con flujos digitales, alertas y reportes automáticos.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+            <h3>Datos, integración y nube</h3>
+            <p>Bases de datos, integración entre sistemas, hosting y servicios en la nube con respaldo y seguridad.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><path d="M8 9h8M8 13h5"/></svg></div>
+            <h3>Soporte y consultoría TI</h3>
+            <p>Acompañamiento en transformación digital, diagnóstico tecnológico, capacitación y soporte continuo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTOR PÚBLICO -->
+    <section class="public" id="sector-publico">
+      <div class="wrap">
+        <div class="split">
+          <div class="reveal">
+            <div class="head" style="margin-bottom:32px">
+              <span class="eyebrow">Sector público</span>
+              <h2>Proveedor del Estado y de empresas públicas.</h2>
+              <p>Participamos en licitaciones y compras públicas con propuestas técnicas claras, plazos realistas y entregables verificables.</p>
+            </div>
+            <ul class="checks">
+              <li>Propuestas ajustadas a bases técnicas y administrativas.</li>
+              <li>Documentación, manuales y transferencia de conocimiento al cliente.</li>
+              <li>Código y datos de propiedad de la institución, sin dependencia del proveedor.</li>
+              <li>Soluciones para operación en terreno, incluido el transporte y la logística.</li>
+            </ul>
+          </div>
+          <aside class="panel reveal">
+            <h3>Rubros</h3>
+            <div class="chips">
+              <span class="chip">Software y licencias</span>
+              <span class="chip">Desarrollo web</span>
+              <span class="chip">Aplicaciones móviles</span>
+              <span class="chip">Sistemas de gestión</span>
+              <span class="chip">Integración de sistemas</span>
+              <span class="chip">Bases de datos</span>
+              <span class="chip">Servicios en la nube</span>
+              <span class="chip">Consultoría TI</span>
+            </div>
+            <p class="note">Disponibles para Mercado Público, Trato Directo y registros de proveedores de empresas del Estado.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section id="proceso">
+      <div class="wrap">
+        <div class="head reveal">
+          <span class="eyebrow">Cómo trabajamos</span>
+          <h2>Un proceso simple y transparente.</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal"><h3>Diagnóstico</h3><p>Entendemos su proceso, sus usuarios y el problema real que hay que resolver.</p></div>
+          <div class="step reveal"><h3>Propuesta</h3><p>Alcance, plazos y costos definidos por escrito, sin letra chica.</p></div>
+          <div class="step reveal"><h3>Desarrollo</h3><p>Entregas parciales y revisiones frecuentes para validar en cada etapa.</p></div>
+          <div class="step reveal"><h3>Puesta en marcha</h3><p>Instalación, capacitación, documentación y soporte posterior.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMPRESA -->
+    <section class="company" id="empresa">
+      <div class="wrap">
+        <div class="head reveal">
+          <span class="eyebrow">Empresa</span>
+          <h2>Datos de la empresa.</h2>
+        </div>
+        <dl class="data reveal">
+          <div><dt>Razón social</dt><dd>VectraTech Solutions SpA</dd></div>
+          <div><dt>RUT</dt><dd>78.518.257-K</dd></div>
+          <div><dt>Giro</dt><dd>Desarrollo de software y servicios TI</dd></div>
+          <div><dt>Ubicación</dt><dd>San Pedro de la Paz, Región del Biobío</dd></div>
+          <div><dt>Correo</dt><dd><a href="mailto:vectratechsolutionspa@gmail.com">vectratechsolutionspa@gmail.com</a></dd></div>
+          <div><dt>Cobertura</dt><dd>Todo Chile, presencial y remoto</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact" id="contacto">
+      <div class="wrap">
+        <div class="contact-box reveal">
+          <h2>¿Tiene un proyecto en mente?</h2>
+          <p>Cuéntenos qué necesita y le enviaremos una propuesta sin costo.</p>
+          <a class="btn btn-white" href="mailto:vectratechsolutionspa@gmail.com?subject=Solicitud%20de%20cotizaci%C3%B3n">Escribir un correo</a>
+          <a class="mail" href="mailto:vectratechsolutionspa@gmail.com">vectratechsolutionspa@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="y">2026</span> VectraTech Solutions SpA · RUT 78.518.257-K</span>
+      <span>San Pedro de la Paz, Chile</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    var els = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function (el) { io.observe(el); });
+    } else {
+      els.forEach(function (el) { el.classList.add("in"); });
+    }
+  </script>
+</body>
+</html>
